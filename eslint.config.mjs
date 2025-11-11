@@ -25,7 +25,15 @@ export default defineConfig(
     },
     rules: {
       ...eslintPluginReactHooks.configs.recommended.rules,
-      ...eslintPluginReactRefresh.configs.vite.rules
+      ...eslintPluginReactRefresh.configs.vite.rules,
+      overrides: [
+        {
+          files: ['*.tsx'], // Apply this override only to .tsx files
+          rules: {
+            '@typescript-eslint/explicit-function-return-type': 'off'
+          }
+        }
+      ]
     }
   },
   eslintConfigPrettier
