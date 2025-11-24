@@ -21,7 +21,7 @@ const App = () => {
   const projectApis = selectedProjectId ? getProjectApis(selectedProjectId) : [];
 
   return (
-    <div className="flex h-screen bg-white dark:bg-dark-900">
+    <div className="flex h-screen bg-neutral-50 dark:bg-neutral-900">
       {/* Sidebar */}
       <Sidebar
         projects={projects}

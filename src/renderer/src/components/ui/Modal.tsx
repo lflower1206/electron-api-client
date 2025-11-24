@@ -39,28 +39,28 @@ const Modal = ({ isOpen, onClose, title, children, size = 'md' }: ModalProps) =>
         <div className="fixed inset-0 z-50 flex items-center justify-center animate-fade-in">
             {/* Backdrop */}
             <div
-                className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+                className="absolute inset-0 bg-neutral-900/40 dark:bg-black/60 backdrop-blur-sm"
                 onClick={onClose}
             />
 
             {/* Modal */}
             <div
                 className={cn(
-                    'relative w-full mx-4 rounded-xl shadow-2xl animate-slide-in',
-                    'bg-white dark:bg-dark-800 border border-dark-200 dark:border-dark-700',
+                    'relative w-full mx-4 rounded-2xl shadow-2xl animate-slide-in',
+                    'bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700',
                     sizes[size]
                 )}
             >
                 {/* Header */}
-                <div className="flex items-center justify-between px-6 py-4 border-b border-dark-200 dark:border-dark-700">
-                    <h2 className="text-xl font-semibold text-dark-900 dark:text-dark-100">
+                <div className="flex items-center justify-between px-6 py-5 border-b border-neutral-200 dark:border-neutral-700">
+                    <h2 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100">
                         {title}
                     </h2>
                     <button
                         onClick={onClose}
-                        className="text-dark-500 hover:text-dark-700 dark:hover:text-dark-300 transition-colors"
+                        className="p-1.5 rounded-lg text-neutral-500 hover:text-neutral-700 dark:hover:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-all"
                     >
-                        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                         </svg>
                     </button>
