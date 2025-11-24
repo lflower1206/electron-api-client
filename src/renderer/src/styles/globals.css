@@ -1,25 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --color-bg-primary: #ffffff;
-  --color-bg-secondary: #f8fafc;
-  --color-bg-tertiary: #f1f5f9;
-  --color-text-primary: #0f172a;
-  --color-text-secondary: #475569;
-  --color-border: #e2e8f0;
-  --color-hover: #f1f5f9;
+  /* Japanese minimalist color palette - Light mode */
+  --color-bg-primary: #fafaf9;
+  --color-bg-secondary: #ffffff;
+  --color-bg-tertiary: #f5f5f4;
+  --color-bg-accent: #fef5f8;
+  
+  --color-text-primary: #292524;
+  --color-text-secondary: #57534e;
+  --color-text-tertiary: #78716c;
+  
+  --color-border: #e7e5e4;
+  --color-border-light: #f5f5f4;
+  
+  --color-primary: #ee5a8d;
+  --color-primary-light: #fcd1e1;
+  --color-primary-lighter: #fef5f8;
+  
+  --color-hover: #f5f5f4;
+  --color-active: #e7e5e4;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+  --shadow-md: 0 2px 8px 0 rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 4px 16px 0 rgba(0, 0, 0, 0.06);
+  
+  /* Spacing rhythm */
+  --spacing-unit: 8px;
 }
 
 .dark {
-  --color-bg-primary: #0f172a;
-  --color-bg-secondary: #1e293b;
-  --color-bg-tertiary: #334155;
-  --color-text-primary: #f8fafc;
-  --color-text-secondary: #cbd5e1;
-  --color-border: #334155;
-  --color-hover: #1e293b;
+  /* Japanese minimalist color palette - Dark mode */
+  --color-bg-primary: #1c1917;
+  --color-bg-secondary: #292524;
+  --color-bg-tertiary: #44403c;
+  --color-bg-accent: #3d2633;
+  
+  --color-text-primary: #fafaf9;
+  --color-text-secondary: #d6d3d1;
+  --color-text-tertiary: #a8a29e;
+  
+  --color-border: #44403c;
+  --color-border-light: #57534e;
+  
+  --color-primary: #f57fa9;
+  --color-primary-light: #6b1f3a;
+  --color-primary-lighter: #3d2633;
+  
+  --color-hover: #44403c;
+  --color-active: #57534e;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 2px 8px 0 rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 4px 16px 0 rgba(0, 0, 0, 0.4);
 }
 
 * {
@@ -29,13 +68,14 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--color-bg-primary);
   color: var(--color-text-primary);
+  line-height: 1.6;
+  letter-spacing: 0.01em;
 }
 
 #root {
@@ -44,26 +84,46 @@ body {
   overflow: hidden;
 }
 
-/* Custom scrollbar */
+/* Minimalist scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-bg-secondary);
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
   background: var(--color-border);
-  border-radius: 4px;
+  border-radius: 3px;
+  transition: background 0.2s ease;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-text-secondary);
+  background: var(--color-text-tertiary);
 }
 
-/* Smooth transitions */
+/* Gentle transitions */
 * {
-  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Focus states - minimalist and subtle */
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--color-primary-light);
+  outline-offset: 2px;
+}
+
+/* Selection color */
+::selection {
+  background-color: var(--color-primary-light);
+  color: var(--color-text-primary);
 }
