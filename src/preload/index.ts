@@ -1,6 +1,6 @@
-import { contextBridge } from 'electron'
+import { contextBridge } from 'electron';
 
 // Custom APIs for renderer
-const api = {}
+const api = {};
 
-    contextBridge.exposeInMainWorld('api', api)
+contextBridge.exposeInMainWorld('api', api);
