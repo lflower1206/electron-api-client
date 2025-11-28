@@ -1,7 +1,9 @@
+import { useState } from 'react';
 import { useApiClient } from '@renderer/hooks/useApiClient';
 import Sidebar from '@renderer/components/Sidebar';
 import ApiList from '@renderer/components/ApiList';
 import EmptyState from '@renderer/components/EmptyState';
+import DependencyGraph from '@renderer/components/DependencyGraph';
 
 const App = () => {
   const {
@@ -17,6 +19,8 @@ const App = () => {
     deleteApi,
     getProjectApis,
   } = useApiClient();
+
+  const [viewMode, setViewMode] = useState<'list' | 'graph'>('list');
 
   const projectApis = selectedProjectId
     ? getProjectApis(selectedProjectId)
@@ -37,15 +41,51 @@ const App = () => {
       />
 
       {/* Main Content */}
-      <div className="flex-1 overflow-hidden">
+      <div className="flex-1 overflow-hidden flex flex-col">
         {selectedProject ? (
-          <div className="h-full p-6">
-            <ApiList
-              apis={projectApis}
-              onCreateApi={(apiData) => createApi(selectedProjectId!, apiData)}
-              onUpdateApi={updateApi}
-              onDeleteApi={deleteApi}
-            />
+          <div className="h-full flex flex-col">
+            <div className="px-6 pt-6 pb-2 flex justify-between items-center">
+              <h1 className="text-2xl font-bold text-neutral-900 dark:text-white">
+                {selectedProject.name}
+              </h1>
+              <div className="flex bg-neutral-200 dark:bg-neutral-800 rounded-lg p-1">
+                <button
+                  onClick={() => setViewMode('list')}
+                  className={`px-4 py-1.5 rounded-md text-sm font-medium transition-colors ${
+                    viewMode === 'list'
+                      ? 'bg-white dark:bg-neutral-700 text-neutral-900 dark:text-white shadow-sm'
+                      : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'
+                  }`}
+                >
+                  List
+                </button>
+                <button
+                  onClick={() => setViewMode('graph')}
+                  className={`px-4 py-1.5 rounded-md text-sm font-medium transition-colors ${
+                    viewMode === 'graph'
+                      ? 'bg-white dark:bg-neutral-700 text-neutral-900 dark:text-white shadow-sm'
+                      : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'
+                  }`}
+                >
+                  Graph
+                </button>
+              </div>
+            </div>
+
+            <div className="flex-1 overflow-hidden p-6 pt-2">
+              {viewMode === 'list' ? (
+                <ApiList
+                  apis={projectApis}
+                  onCreateApi={(apiData) =>
+                    createApi(selectedProjectId!, apiData)
+                  }
+                  onUpdateApi={updateApi}
+                  onDeleteApi={deleteApi}
+                />
+              ) : (
+                <DependencyGraph apis={projectApis} />
+              )}
+            </div>
           </div>
         ) : (
           <EmptyState

@@ -12,6 +12,12 @@ export interface Header {
   value: string;
 }
 
+export interface Mapping {
+  sourceApiId: string;
+  sourceField: string; // e.g., "body.token", "headers.Authorization"
+  targetField: string; // e.g., "headers.Authorization", "body.userId"
+}
+
 export interface API {
   id: string;
   projectId: string;
@@ -22,4 +28,6 @@ export interface API {
   body: string;
   description: string;
   createdAt: string;
+  dependencies?: string[]; // List of parent API IDs
+  mappings?: Mapping[];
 }
