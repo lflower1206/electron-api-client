@@ -25,6 +25,7 @@
   "dependencies": {
     "@electron-toolkit/preload": "3.0.2",
     "@electron-toolkit/utils": "4.0.0",
+    "@xyflow/system": "^0.0.73",
     "clsx": "^2.1.1",
     "idb": "^8.0.3",
     "tailwind-merge": "^3.4.0"

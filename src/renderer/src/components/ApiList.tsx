@@ -174,6 +174,7 @@ const ApiList = ({
         size="lg"
       >
         <ApiForm
+          availableApis={apis}
           onSubmit={handleCreateApi}
           onCancel={() => setIsCreateModalOpen(false)}
         />
@@ -189,6 +190,7 @@ const ApiList = ({
         {editingApi && (
           <ApiForm
             api={editingApi}
+            availableApis={apis}
             onSubmit={handleUpdateApi}
             onCancel={() => setEditingApi(null)}
           />
